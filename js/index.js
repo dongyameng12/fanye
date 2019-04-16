@@ -9,10 +9,8 @@
     if (!doc.addEventListener) return;
     win.addEventListener(resizeEvt, recalc, false);
     doc.addEventListener('DOMContentLoaded', recalc, false);
-})
-    (document, window);
-
-$(document).ready(function () {
+})(document, window);
+$(function () {
     var audio = document.getElementById('music')
     $('#musicMenu').on('click',function () {
         if (!$(this).hasClass('move')) {
@@ -23,8 +21,8 @@ $(document).ready(function () {
             audio.pause()
         }
     })
+})
 
-});
 //显示遮罩层
 function showMask() {
     $("#mask").css("height", $(document).height());
