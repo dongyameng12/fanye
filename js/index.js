@@ -23,6 +23,7 @@ $(function () {
     ms3.load();
     ms4.load();
     ms5.load();
+    music.pause()
     //bgMusic
     wx.config({
         debug: false
@@ -47,7 +48,6 @@ $(function () {
             }, false);
             document.addEventListener("touchstart",play, false);
         }
-        music.play();
         audioAutoPlay('ms1');
         audioAutoPlay('ms2');
         audioAutoPlay('ms3');
