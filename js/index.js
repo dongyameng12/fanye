@@ -48,6 +48,7 @@ $(function () {
             }, false);
             document.addEventListener("touchstart",play, false);
         }
+        music.pause()
         audioAutoPlay('ms1');
         audioAutoPlay('ms2');
         audioAutoPlay('ms3');
