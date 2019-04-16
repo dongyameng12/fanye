@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>北京移动</title>
+    <link rel="stylesheet" href="css/reset.min.css">
+    <!-- <link rel="stylesheet/less" href="css/styles.less"> -->
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- <script src="js/less-1.7.0.min.js"></script> -->
+    <script src="js/jquery-1.10.1.min.js"></script>
+    <script src="js/modernizr.2.5.3.min.js"></script>
+</head>
+
+<body>
+    <section class="music" id="musicMenu">
+        <audio autoplay src="audio/music.mp3" preload="none" loop id="music"></audio>
+    </section>
+    <!-- <section>
+        <audio src="audio/ms1.mp3" loop id="ms1"></audio>
+        <audio src="audio/ms2.mp3" id="ms2"></audio>
+        <audio src="audio/ms3.wav" id="ms3"></audio>
+        <audio src="audio/ms4.wav" id="ms4"></audio>
+        <audio src="audio/ms5.wav" id="ms5"></audio>
+    </section> -->
+    <!-- <button class="btn">点击</button> -->
+    <div class="flipbook">
+        <div style="background-image:url(images/01.jpg)"></div>
+        <div style="background-image:url(images/02.jpg)"></div>
+        <div style="background-image:url(images/03.jpg)"></div>
+        <div style="background-image:url(images/04.jpg)"></div>
+        <div style="background-image:url(images/05.jpg)"></div>
+        <div style="background-image:url(images/01.jpg)"></div>
+        <div style="background-image:url(images/02.jpg)"></div>
+        <div style="background-image:url(images/03.jpg)"></div>
+        <div style="background-image:url(images/04.jpg)"></div>
+        <div style="background-image:url(images/05.jpg)"></div>
+    </div>
+    <script type="text/javascript">
+        var nextPage
+        $(function () {
+            init_turn()
+            time_auto()
+        })
+
+        // 初始化turn容器
+        function init_turn() {
+            //可以设置上一页  及 下一页 跳转指定页
+            // Turn to the page 10
+            //$("#flipbook").turn("page", 10);
+            //$("#flipbook").turn("next");
+            //$("#flipbook").turn("prev");
+            function loadApp() {
+                var w = $(window).width();
+                var h = $(window).height();
+                // var h =300;
+                //判断是否是移动端
+                if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+                    //书本初始化
+                    $('.flipbook').turn({
+                        width: w,
+                        height: h,//书本的大小
+                        direction: "ltr",//书本翻动方向
+                        elevation: 50, //在转换期间设置页面的标高。
+                        display: "single",//display("double"  "single")  展示一页或者两页，默认double
+                        duration: 1000,// 设置翻页动画持续时间即翻页的快慢，默认600(毫秒)
+                        gradients: true,//翻页阴影
+                        acceleration: true,// 硬件加速，对于触摸设备，一定要设置true
+                        autoCenter: false //是否居中 默认false
+                    });
+                } else {
+                    //书本初始化
+                    $('.flipbook').turn({
+                        width: w,
+                        height: h,
+                        direction: "ltr",
+                        elevation: 50,
+                        display: "double",
+                        duration: 1000,
+                        gradients: true
+                    });
+                    var $pages = $(".page");
+                    if ($pages.length > 0) {
+                        for (var i = 0; i < $pages.length; i++) {
+                            $pages.eq(i).css("width", w / 2);
+                        }
+                    }
+                }
+            }
+            yepnope({
+                test: Modernizr.csstransforms,
+                yep: ['js/turn.js'],
+                nope: ['js/turn.html4.min.js'],
+                both: ['css/styles.css'],
+                complete: loadApp
+            });
+        }
+
+        //上一页
+        function pre_page() {
+            $('.flipbook').turn("previous");
+        }
+        // 下一页
+        function next_page() {
+            $('.flipbook').turn("next");
+        }
+
+        // 最后一页（当到达最后一页的时候，清楚定时器）
+        $('.flipbook').bind("last", function () {
+            clearInterval(nextPage);
+            // alert("最后一页");
+        })
+
+        // 定时器控制自动翻页
+        function time_auto() {
+            nextPage = setInterval(function () {
+                currPage()
+                next_page()
+            }, 2000);
+        }
+
+        // 当前页内容的效果
+        function currPage () {
+            var curr_page = $(".flipbook").turn("page")
+            switch (curr_page) {
+                    case 3:
+                        console.log('3333333333333333')
+                        break;
+            }
+        }
+
+        // 跳转到指定页面
+        function jumpPage (index) {
+            $(".flipbook").turn("page",index)
+            currPage()
+        }
+
+
+        // $('.btn').click(function(){
+        //     jumpPage(3)
+        // })
+    </script>
+
+</body>
+
+</html>
+<script src="js/index.js"></script>

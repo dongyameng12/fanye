@@ -1,0 +1,51 @@
+
+html,body{
+    // font-size: 58.5938px;
+        background-color: #b7ea9d;
+        height: 100%;
+        /* 遮罩层 */
+        section.mask{
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: rgba(0,0,0,.8);
+            z-index: 100;
+        }
+}
+.music {
+    // display: none;
+    position: fixed;
+    top: .2rem;
+    left: .2rem;
+    z-index: 50;
+    width: .6rem;
+    height: .6rem;
+    background: url("../audio/music.svg") no-repeat;
+    background-size: cover;
+}
+.music.move {
+    -webkit-animation: musicMove 1s linear 0s infinite both;
+    animation: musicMove 1s linear 0s infinite both;
+}
+@-webkit-keyframes musicMove {
+    0% {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+}
+@keyframes musicMove {
+    0% {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+}
+
+             
