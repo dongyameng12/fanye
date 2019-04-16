@@ -12,6 +12,7 @@
 })(document, window);
 $(function () {
     var audio = document.getElementById('music')
+    audio.pause()
     $('#musicMenu').on('click',function () {
         if (!$(this).hasClass('move')) {
             $(this).addClass('move')
