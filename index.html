@@ -13,9 +13,55 @@
     <script src="js/jquery-1.10.1.min.js"></script>
     <script src="js/jweixin-1.0.0.js"></script>
     <script src="js/modernizr.2.5.3.min.js"></script>
+    <script src="js/preLoader.js"></script>
+    <script>
+         preLoader([
+            './audio/music.mp3',
+            './audio/ms1.mp3',
+            './audio/ms2.mp3',
+            './audio/ms3.wav',
+            './audio/ms4.wav',
+            './audio/ms5.wav',
+            './images/01.jpg',
+            './images/02.jpg',
+            './images/03.jpg',
+            './images/04.jpg',
+            './images/05.jpg'
+        ],function (percentage) {
+            var ms1 = document.getElementById('ms1'),
+                ms2 = document.getElementById('ms2'),
+                ms3 = document.getElementById('ms3'),
+                ms4 = document.getElementById('ms4'),
+                ms5 = document.getElementById('ms5');
+            ms1.load();
+            ms2.load();
+            ms3.load();
+            ms4.load();
+            ms5.load();
+            var percentT = percentage * 100;
+            $('#loader_info').html((parseInt(percentT)) + '%');
+            if (percentage === 1) {
+                setTimeout(function () {
+                    $('#loader').remove();
+                    $('#main').show();
+                    $('.music').show();
+                    $('.music').addClass('move');
+                    // showMask();
+                },1000);
+            }
+        });
+    </script>
 </head>
 
 <body>
+    <!--loading-->
+    <section id="loader">
+        <div>
+            <img src="./images/loading.gif" alt="loading">
+        </div>
+        <p>努力加载中...</p>
+        <p id="loader_info"></p>
+    </section>
     <section class="music" id="musicMenu">
         <audio  src="audio/music.mp3" preload="none" loop id="music"></audio>
     </section>
@@ -27,18 +73,21 @@
         <audio src="audio/ms5.wav" id="ms5"></audio>
     </section>
     <!-- <button class="btn">点击</button> -->
-    <div class="flipbook">
-        <div style="background-image:url(images/01.jpg)"></div>
-        <div style="background-image:url(images/02.jpg)"></div>
-        <div style="background-image:url(images/03.jpg)"></div>
-        <div style="background-image:url(images/04.jpg)"></div>
-        <div style="background-image:url(images/05.jpg)"></div>
-        <div style="background-image:url(images/01.jpg)"></div>
-        <div style="background-image:url(images/02.jpg)"></div>
-        <div style="background-image:url(images/03.jpg)"></div>
-        <div style="background-image:url(images/04.jpg)"></div>
-        <div style="background-image:url(images/05.jpg)"></div>
-    </div>
+    <section class="fanye" id="main">
+        <div class="flipbook">
+            <div style="background-image:url(images/01.jpg)"></div>
+            <div style="background-image:url(images/02.jpg)"></div>
+            <div style="background-image:url(images/03.jpg)"></div>
+            <div style="background-image:url(images/04.jpg)"></div>
+            <div style="background-image:url(images/05.jpg)"></div>
+            <div style="background-image:url(images/01.jpg)"></div>
+            <div style="background-image:url(images/02.jpg)"></div>
+            <div style="background-image:url(images/03.jpg)"></div>
+            <div style="background-image:url(images/04.jpg)"></div>
+            <div style="background-image:url(images/05.jpg)"></div>
+        </div>
+    </section>
+  
     <script type="text/javascript">
         var nextPage
         $(function () {
@@ -69,7 +118,7 @@
                         duration: 1000,// 设置翻页动画持续时间即翻页的快慢，默认600(毫秒)
                         gradients: true,//翻页阴影
                         acceleration: true,// 硬件加速，对于触摸设备，一定要设置true
-                        autoCenter: false //是否居中 默认false
+                        autoCenter: false, //是否居中 默认false
                     });
                 } else {
                     //书本初始化
@@ -80,7 +129,7 @@
                         elevation: 50,
                         display: "double",
                         duration: 1000,
-                        gradients: true
+                        gradients: true,
                     });
                     var $pages = $(".page");
                     if ($pages.length > 0) {

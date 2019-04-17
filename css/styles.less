@@ -3,6 +3,9 @@ html,body{
     // font-size: 58.5938px;
         background-color: #b7ea9d;
         height: 100%;
+        section.fanye{
+            display: none;
+        }
         /* 遮罩层 */
         section.mask{
             position: absolute;
@@ -12,8 +15,35 @@ html,body{
             z-index: 100;
         }
 }
+
+// 加载的样式
+
+#loader{
+    box-sizing: border-box;
+    padding-top: 5rem;
+    width: 7.5rem;
+    height: 100%;
+    background: -webkit-radial-gradient(#5483da,#4a7bd5,#3066b8);
+    div{
+      margin: 0 auto .3rem;
+      width: 2.14rem;
+      height: 2.13rem;
+      img{
+        width: 100%;
+        height: 100%;
+      }
+    }
+    p{
+      font-size: .3rem;
+      color: #ffffff;
+      line-height: 1.5em;
+      text-align: center;
+    }
+  }
+
+// 旋转的音乐
 .music {
-    // display: none;
+    display: none;
     position: fixed;
     top: .2rem;
     left: .2rem;
